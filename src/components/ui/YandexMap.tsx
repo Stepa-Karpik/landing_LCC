@@ -5,9 +5,10 @@ type YandexMapProps = {
   coordinates: readonly [number, number];
   title: string;
   address: string;
+  className?: string;
 };
 
-export function YandexMap({ coordinates, title, address }: YandexMapProps) {
+export function YandexMap({ coordinates, title, address, className }: YandexMapProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<YMapInstance | null>(null);
   const [error, setError] = useState(false);
@@ -32,6 +33,7 @@ export function YandexMap({ coordinates, title, address }: YandexMapProps) {
             center: coordinates,
             zoom: 15,
             controls: ["zoomControl"],
+            behaviors: ["drag", "scrollZoom", "dblClickZoom", "multiTouch"],
           });
 
           const placemark = new ymaps.Placemark(
@@ -73,7 +75,8 @@ export function YandexMap({ coordinates, title, address }: YandexMapProps) {
   return (
     <div
       ref={containerRef}
-      className="min-h-[420px] w-full overflow-hidden rounded-[16px] border border-black/10 bg-white grayscale"
+      onWheelCapture={(event) => event.stopPropagation()}
+      className={`min-h-[420px] w-full overflow-hidden rounded-[16px] border border-black/10 bg-white grayscale ${className || ""}`}
     />
   );
 }

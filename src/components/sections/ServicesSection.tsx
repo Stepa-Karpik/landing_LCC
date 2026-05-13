@@ -1,53 +1,70 @@
-import { content } from "../../content/content";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight, Check } from "lucide-react";
+import { useState } from "react";
+import { useSiteContent } from "../../context/LanguageContext";
 
 export function ServicesSection() {
-  const [first, second, ...rest] = content.services.cards;
+  const copy = useSiteContent();
+  const [active, setActive] = useState(0);
 
   return (
-    <section id="services" className="border-t border-black/10 bg-white py-16 md:py-20">
+    <section className="min-h-[calc(100svh-3.5rem)] border-t border-black/10 bg-white py-10 md:py-12">
       <div className="page-shell">
-        <div className="grid gap-8 lg:grid-cols-[1fr_340px] lg:items-start">
-          <div>
-            <p className="eyebrow">{content.services.kicker}</p>
-            <h2 className="mt-4 text-[clamp(3rem,5vw,5.5rem)] font-black leading-none">{content.services.title}</h2>
-          </div>
-          <div>
-            <p className="text-lg font-semibold leading-snug">{content.services.text}</p>
-            <a href="#contacts" className="mt-7 inline-flex rounded-full bg-[#1c1b1b] px-9 py-4 text-sm font-black text-white">
-              {content.services.button}
-            </a>
-          </div>
-        </div>
+        <h1 className="max-w-6xl text-[clamp(3.3rem,6vw,8rem)] font-black leading-[0.95] tracking-normal">
+          {copy.services.title}
+        </h1>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-2">
-          <ServiceCard card={first} size="large" />
-          <ServiceCard card={second} size="large" />
-        </div>
-        <div className="mt-6 grid gap-6 md:grid-cols-3">
-          {rest.map((card) => (
-            <ServiceCard key={card.title} card={card} size="small" />
-          ))}
-        </div>
+        <motion.div layout className="mt-10 grid auto-rows-[250px] gap-5 lg:grid-cols-3 xl:auto-rows-[285px]">
+          {copy.services.cards.map((card, index) => {
+            const isActive = active === index;
+            return (
+              <motion.article
+                layout
+                key={card.title}
+                onClick={() => setActive(index)}
+                className={`group relative cursor-pointer overflow-hidden rounded-[22px] bg-neutral-950 text-white ${
+                  isActive ? "lg:col-span-2 lg:row-span-2" : ""
+                }`}
+                transition={{ layout: { duration: 0.58, ease: [0.16, 1, 0.3, 1] } }}
+              >
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  className="absolute inset-0 h-full w-full object-cover opacity-82 transition duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/78 via-black/20 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
+                  <div className="flex items-end justify-between gap-5">
+                    <h2 className="max-w-xl text-[clamp(1.8rem,3vw,4rem)] font-black leading-none">{card.title}</h2>
+                    <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-white text-[#1c1b1b] transition group-hover:rotate-45">
+                      <ArrowUpRight size={22} />
+                    </span>
+                  </div>
+
+                  <AnimatePresence initial={false}>
+                    {isActive ? (
+                      <motion.ul
+                        initial={{ opacity: 0, y: 18, height: 0 }}
+                        animate={{ opacity: 1, y: 0, height: "auto" }}
+                        exit={{ opacity: 0, y: 18, height: 0 }}
+                        transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
+                        className="mt-7 grid gap-3 overflow-hidden md:grid-cols-2"
+                      >
+                        {card.details.map((detail) => (
+                          <li key={detail} className="flex gap-3 rounded-full bg-white/12 px-4 py-3 text-sm font-bold leading-snug text-white backdrop-blur">
+                            <Check className="mt-0.5 shrink-0" size={16} />
+                            {detail}
+                          </li>
+                        ))}
+                      </motion.ul>
+                    ) : null}
+                  </AnimatePresence>
+                </div>
+              </motion.article>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
-  );
-}
-
-function ServiceCard({
-  card,
-  size,
-}: {
-  card: (typeof content.services.cards)[number];
-  size: "large" | "small";
-}) {
-  return (
-    <article className={`relative overflow-hidden rounded-[20px] bg-neutral-900 ${size === "large" ? "min-h-[355px]" : "min-h-[300px]"}`}>
-      <img src={card.image} alt={card.title} className="absolute inset-0 h-full w-full object-cover" />
-      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/78 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 p-6 text-white md:p-7">
-        <h3 className="text-2xl font-black leading-tight md:text-3xl">{card.title}</h3>
-        <p className="mt-3 line-clamp-2 max-w-xl text-sm font-semibold leading-relaxed text-white/85">{card.text}</p>
-      </div>
-    </article>
   );
 }

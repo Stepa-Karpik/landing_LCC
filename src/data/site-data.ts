@@ -7,11 +7,14 @@ export type ImageItem = {
 };
 
 export const company = content.company;
+export const hero = content.hero;
+export const nav = content.nav;
+export const gallery = content.gallery.images;
 export const services = content.services.cards.map((card, index) => ({
   kicker: String(index + 1).padStart(2, "0"),
   title: card.title,
-  description: card.text,
-  points: [card.text],
+  description: card.details[0],
+  points: card.details,
 }));
 export const technicalFacts = [
   { value: "2017", label: "год основания" },
