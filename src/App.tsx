@@ -9,7 +9,7 @@ import { TechnicalBaseSection } from "./components/sections/TechnicalBaseSection
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-stone-100 text-neutral-950">
+    <div className="min-h-screen bg-[#9fa594] text-[#1c1b1b]">
       <Header />
       <main>
         <HeroSection />

@@ -16,8 +16,8 @@ export function ImageGallery({ items }: ImageGalleryProps) {
 
   return (
     <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_320px]">
-      <div className="relative min-h-[360px] overflow-hidden bg-neutral-900 md:min-h-[620px]">
-        <img src={active.src} alt={active.title} className="h-full min-h-[360px] w-full object-cover grayscale md:min-h-[620px]" />
+      <div className="relative min-h-[360px] overflow-hidden rounded-[24px] bg-neutral-900 md:min-h-[620px]">
+        <img src={active.src} alt={active.title} className="h-full min-h-[360px] w-full object-cover md:min-h-[620px]" />
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/65 to-transparent p-5 text-white md:p-8">
           <p className="eyebrow text-neutral-300">{active.title}</p>
           <p className="mt-3 max-w-2xl text-xl font-semibold leading-snug md:text-3xl">{active.caption}</p>
@@ -27,7 +27,7 @@ export function ImageGallery({ items }: ImageGalleryProps) {
             type="button"
             aria-label="Предыдущее фото"
             onClick={() => move(-1)}
-            className="grid h-11 w-11 place-items-center border border-white bg-black/70 text-white transition hover:bg-white hover:text-black"
+            className="grid h-11 w-11 place-items-center rounded-full border border-white bg-black/70 text-white transition hover:bg-white hover:text-black"
           >
             <ChevronLeft size={20} />
           </button>
@@ -35,7 +35,7 @@ export function ImageGallery({ items }: ImageGalleryProps) {
             type="button"
             aria-label="Следующее фото"
             onClick={() => move(1)}
-            className="grid h-11 w-11 place-items-center border border-white bg-black/70 text-white transition hover:bg-white hover:text-black"
+            className="grid h-11 w-11 place-items-center rounded-full border border-white bg-black/70 text-white transition hover:bg-white hover:text-black"
           >
             <ChevronRight size={20} />
           </button>
@@ -48,13 +48,13 @@ export function ImageGallery({ items }: ImageGalleryProps) {
             key={item.title}
             type="button"
             onClick={() => setActiveIndex(index)}
-            className={`group grid grid-cols-[84px_1fr] items-center gap-3 border p-2 text-left transition ${
+            className={`group grid grid-cols-[84px_1fr] items-center gap-3 rounded-[18px] border p-2 text-left transition ${
               activeIndex === index
                 ? "border-neutral-950 bg-neutral-950 text-white"
-                : "border-neutral-300 bg-transparent text-neutral-950 hover:border-neutral-950"
+                : "border-black/10 bg-white text-neutral-950 hover:border-neutral-950"
             }`}
           >
-            <img src={item.src} alt="" className="h-16 w-20 object-cover grayscale" />
+            <img src={item.src} alt="" className="h-16 w-20 rounded-[12px] object-cover" />
             <span className="min-w-0 break-words text-xs font-black uppercase leading-tight tracking-[0.12em]">{item.title}</span>
           </button>
         ))}

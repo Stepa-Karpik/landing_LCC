@@ -13,22 +13,24 @@ const capabilities = [
 
 export function TechnicalBaseSection() {
   return (
-    <section id="technical-base" className="section-pad border-b border-neutral-950 bg-stone-100">
+    <section id="technical-base" className="section-pad">
       <div className="page-shell">
-        <SectionIntro
-          eyebrow="Техническая база"
-          title="Территория, цех, техника"
-          lead="Комплекс собран вокруг практической производительности: площадка, ремонтный цех, техника, контроль доступа и запас комплектующих."
-        />
+        <div className="surface p-5 md:p-8">
+          <SectionIntro
+            eyebrow="Техническая база"
+            title="Территория, цех, техника"
+            lead="Комплекс собран вокруг практической производительности: площадка, ремонтный цех, техника, контроль доступа и запас комплектующих."
+          />
 
-        <ImageGallery items={technicalBase} />
+          <ImageGallery items={technicalBase} />
 
-        <div className="mt-10 grid border-l border-t border-neutral-950 md:grid-cols-2 xl:grid-cols-3">
-          {capabilities.map((item) => (
-            <div key={item} className="border-b border-r border-neutral-950 p-5 text-xl font-black uppercase leading-tight md:p-7 md:text-2xl">
-              {item}
-            </div>
-          ))}
+          <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+            {capabilities.map((item) => (
+              <div key={item} className="rounded-[22px] border border-black/10 bg-white p-5 text-xl font-black leading-tight md:p-6 md:text-2xl">
+                {item}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

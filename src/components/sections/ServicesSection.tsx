@@ -1,35 +1,63 @@
 import { ArrowUpRight } from "lucide-react";
-import { services } from "../../data/site-data";
+import { showcaseServices } from "../../data/site-data";
 import { SectionIntro } from "../ui/SectionIntro";
 
 export function ServicesSection() {
   return (
-    <section id="services" className="section-pad border-b border-neutral-950 bg-stone-100">
+    <section id="services" className="section-pad">
       <div className="page-shell">
-        <SectionIntro
-          eyebrow="Операционный контур"
-          title="Услуги без слабых звеньев"
-          lead="Один комплекс закрывает депо, ремонт, складскую обработку, перетарку, транспорт и обмен данными с операторами."
-        />
+        <div className="surface p-5 md:p-8">
+          <div className="mb-5 grid overflow-hidden rounded-[16px] bg-neutral-950 text-white md:grid-cols-[1fr_360px]">
+            <div className="p-6 md:p-8">
+              <p className="eyebrow text-neutral-400">/Экспертиза ЛКК</p>
+              <h2 className="mt-4 max-w-2xl text-4xl font-black leading-none md:text-6xl">
+                Логистика контейнеров без разрывов в процессе
+              </h2>
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-neutral-300">
+                От ворот депо до ремонта, склада, перетарки и передачи данных оператору.
+              </p>
+            </div>
+            <div className="relative min-h-[220px] md:min-h-full">
+              <img
+                src={showcaseServices[0].image}
+                alt="Контейнеры ЛКК"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
+          </div>
 
-        <div className="grid border-l border-t border-neutral-950 md:grid-cols-2 xl:grid-cols-3">
-          {services.map((service) => (
-            <article key={service.title} className="min-h-[360px] border-b border-r border-neutral-950 bg-stone-100 p-5 transition hover:bg-white md:p-7">
-              <div className="flex items-start justify-between gap-5">
-                <span className="text-sm font-black uppercase tracking-[0.16em] text-neutral-500">{service.kicker}</span>
-                <ArrowUpRight size={22} strokeWidth={2.4} />
-              </div>
-              <h3 className="mt-12 text-4xl font-black uppercase leading-[0.92] md:text-5xl">{service.title}</h3>
-              <p className="mt-6 text-base leading-relaxed text-neutral-700">{service.description}</p>
-              <ul className="mt-8 space-y-3">
-                {service.points.map((point) => (
-                  <li key={point} className="border-t border-neutral-300 pt-3 text-sm font-bold uppercase tracking-[0.08em]">
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
+          <SectionIntro
+            eyebrow="Услуги"
+            title="Решения для контейнерного бизнеса"
+            lead="Один комплекс закрывает депо, ремонт, складскую обработку, перетарку, транспорт и обмен данными с операторами."
+          />
+
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-6">
+            {showcaseServices.map((service, index) => (
+              <article
+                key={service.title}
+                className={`group relative min-h-[260px] overflow-hidden rounded-[16px] bg-neutral-900 text-white ${
+                  index < 2 ? "lg:col-span-3" : "lg:col-span-2"
+                }`}
+              >
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-white text-neutral-950">
+                  <ArrowUpRight size={18} strokeWidth={2.4} />
+                </div>
+                <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
+                  <h3 className="max-w-sm text-3xl font-black leading-none md:text-4xl">{service.title}</h3>
+                  <p className="mt-3 max-w-lg text-sm font-semibold leading-relaxed text-neutral-200">
+                    {service.text}
+                </p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>

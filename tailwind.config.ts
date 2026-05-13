@@ -5,8 +5,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ['"Manrope"', "system-ui", "sans-serif"],
-        body: ['"Manrope"', "system-ui", "sans-serif"],
+        display: ['"Source Sans 3"', '"Source Sans Pro"', "system-ui", "sans-serif"],
+        body: ['"Source Sans 3"', '"Source Sans Pro"', "system-ui", "sans-serif"],
       },
       maxWidth: {
         page: "1440px",

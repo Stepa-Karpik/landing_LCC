@@ -19,18 +19,18 @@ export function BeforeAfterSlider({
   const [position, setPosition] = useState(52);
 
   return (
-    <div className="group relative aspect-[16/10] w-full min-w-0 overflow-hidden bg-neutral-950 text-white">
+    <div className="group relative aspect-[16/10] w-full min-w-0 overflow-hidden rounded-[24px] bg-neutral-950 text-white">
       <img
         src={after}
         alt={`${title} после ремонта`}
-        className="absolute inset-0 h-full w-full object-cover grayscale"
+        className="absolute inset-0 h-full w-full object-cover"
         draggable={false}
       />
       <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}>
         <img
           src={before}
           alt={`${title} до ремонта`}
-          className="absolute inset-0 h-full w-full object-cover grayscale"
+          className="absolute inset-0 h-full w-full object-cover"
           draggable={false}
         />
       </div>

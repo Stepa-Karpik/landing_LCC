@@ -73,7 +73,7 @@ export function YandexMap({ coordinates, title, address }: YandexMapProps) {
   return (
     <div
       ref={containerRef}
-      className="min-h-[420px] w-full overflow-hidden border border-neutral-800 bg-neutral-950 grayscale"
+      className="min-h-[420px] w-full overflow-hidden rounded-[16px] border border-black/10 bg-white grayscale"
     />
   );
 }

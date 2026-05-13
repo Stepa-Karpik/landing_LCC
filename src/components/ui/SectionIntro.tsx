@@ -7,9 +7,9 @@ type SectionIntroProps = {
 
 export function SectionIntro({ eyebrow, title, lead, inverted = false }: SectionIntroProps) {
   return (
-    <div className="mb-12 grid gap-7 md:mb-16 md:grid-cols-[minmax(0,0.9fr)_minmax(280px,0.45fr)] md:items-end">
+    <div className="mb-8 grid gap-7 md:mb-10 md:grid-cols-[minmax(0,0.86fr)_minmax(280px,0.42fr)] md:items-end">
       <div>
-        <p className={inverted ? "eyebrow text-neutral-400" : "eyebrow"}>{eyebrow}</p>
+        <p className={inverted ? "eyebrow text-neutral-400" : "eyebrow"}>/{eyebrow}</p>
         <h2 className="section-title mt-4">{title}</h2>
       </div>
       {lead ? (

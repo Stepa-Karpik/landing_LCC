@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,9 +7,8 @@
 :root {
   color-scheme: light;
   font-family:
-    "Manrope",
-    "Suisse Int'l",
-    "Neue Haas Grotesk Text",
+    "Source Sans 3",
+    "Source Sans Pro",
     system-ui,
     sans-serif;
   text-rendering: geometricPrecision;
@@ -23,10 +24,14 @@ html {
   scroll-behavior: smooth;
 }
 
+section {
+  scroll-margin-top: 6.5rem;
+}
+
 body {
   min-width: 320px;
   margin: 0;
-  background: #f4f3ef;
+  background: #9ca290;
 }
 
 img {
@@ -46,42 +51,50 @@ textarea {
 
 @layer components {
   .page-shell {
-    @apply mx-auto w-full max-w-page px-4 sm:px-6 lg:px-10;
+    @apply mx-auto w-full max-w-page px-4 sm:px-6 lg:px-12;
   }
 
   .section-pad {
-    @apply py-20 md:py-28 lg:py-36;
+    @apply py-8 md:py-10 lg:py-12;
   }
 
   .eyebrow {
-    @apply text-xs font-black uppercase tracking-[0.22em] text-neutral-500;
+    @apply text-[0.72rem] font-black uppercase tracking-[0.12em] text-neutral-500;
   }
 
   .display-title {
-    @apply text-[clamp(2.45rem,9vw,9.5rem)] font-black uppercase leading-[0.82] tracking-normal;
-    hyphens: auto;
-    overflow-wrap: break-word;
+    @apply text-[clamp(2.55rem,6.7vw,7.6rem)] font-black leading-[0.92] tracking-normal;
+    hyphens: none;
+    overflow-wrap: normal;
   }
 
   .section-title {
-    @apply text-[clamp(2.35rem,6vw,6.75rem)] font-black uppercase leading-[0.88] tracking-normal;
+    @apply text-[clamp(2.25rem,4.2vw,5rem)] font-black leading-[0.96] tracking-normal;
     hyphens: auto;
     overflow-wrap: break-word;
   }
 
   .button-dark {
-    @apply inline-flex min-h-12 items-center justify-center gap-2 border border-neutral-950 bg-neutral-950 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition duration-200 hover:bg-white hover:text-neutral-950;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-neutral-950 bg-neutral-950 px-5 py-3 text-sm font-black text-white transition duration-200 hover:bg-white hover:text-neutral-950;
   }
 
   .button-light {
-    @apply inline-flex min-h-12 items-center justify-center gap-2 border border-white bg-white px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-neutral-950 transition duration-200 hover:bg-neutral-950 hover:text-white;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white bg-white px-5 py-3 text-sm font-black text-neutral-950 transition duration-200 hover:bg-neutral-950 hover:text-white;
   }
 
   .button-ghost {
-    @apply inline-flex min-h-12 items-center justify-center gap-2 border border-neutral-950 bg-transparent px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-neutral-950 transition duration-200 hover:bg-neutral-950 hover:text-white;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-neutral-950 bg-transparent px-5 py-3 text-sm font-black text-neutral-950 transition duration-200 hover:bg-neutral-950 hover:text-white;
   }
 
   .field {
-    @apply w-full border border-neutral-800 bg-neutral-950 px-4 py-4 text-base text-white outline-none transition placeholder:text-neutral-500 focus:border-white;
+    @apply w-full rounded-2xl border border-neutral-800 bg-neutral-950 px-4 py-4 text-base text-white outline-none transition placeholder:text-neutral-500 focus:border-white;
+  }
+
+  .surface {
+    @apply overflow-hidden rounded-[18px] border border-black/10 bg-[#f3f3f3] shadow-[0_26px_80px_rgba(28,27,27,0.08)];
+  }
+
+  .soft-card {
+    @apply rounded-[16px] border border-black/10 bg-[#f3f3f3];
   }
 }
