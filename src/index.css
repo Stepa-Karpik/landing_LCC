@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  font-family:
+    "Manrope",
+    "Suisse Int'l",
+    "Neue Haas Grotesk Text",
+    system-ui,
+    sans-serif;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background: #f4f3ef;
+}
+
+img {
+  display: block;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: #111;
+  color: #fff;
+}
+
+@layer components {
+  .page-shell {
+    @apply mx-auto w-full max-w-page px-4 sm:px-6 lg:px-10;
+  }
+
+  .section-pad {
+    @apply py-20 md:py-28 lg:py-36;
+  }
+
+  .eyebrow {
+    @apply text-xs font-black uppercase tracking-[0.22em] text-neutral-500;
+  }
+
+  .display-title {
+    @apply text-[clamp(2.45rem,9vw,9.5rem)] font-black uppercase leading-[0.82] tracking-normal;
+    hyphens: auto;
+    overflow-wrap: break-word;
+  }
+
+  .section-title {
+    @apply text-[clamp(2.35rem,6vw,6.75rem)] font-black uppercase leading-[0.88] tracking-normal;
+    hyphens: auto;
+    overflow-wrap: break-word;
+  }
+
+  .button-dark {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 border border-neutral-950 bg-neutral-950 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition duration-200 hover:bg-white hover:text-neutral-950;
+  }
+
+  .button-light {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 border border-white bg-white px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-neutral-950 transition duration-200 hover:bg-neutral-950 hover:text-white;
+  }
+
+  .button-ghost {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 border border-neutral-950 bg-transparent px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-neutral-950 transition duration-200 hover:bg-neutral-950 hover:text-white;
+  }
+
+  .field {
+    @apply w-full border border-neutral-800 bg-neutral-950 px-4 py-4 text-base text-white outline-none transition placeholder:text-neutral-500 focus:border-white;
+  }
+}
