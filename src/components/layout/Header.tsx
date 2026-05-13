@@ -1,85 +1,60 @@
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-
-const navItems = [
-  { label: "Услуги", href: "#services" },
-  { label: "Ремонт", href: "#repair" },
-  { label: "Техбаза", href: "#technical-base" },
-  { label: "Качество", href: "#quality" },
-  { label: "Контакты", href: "#contacts" },
-];
+import { content } from "../../content/content";
 
 export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="pt-6">
-      <div className="page-shell">
-        <div className="flex min-h-[68px] items-center justify-between gap-5 rounded-[22px] border border-black/10 bg-[#f3f3f3]/95 px-4 shadow-[0_18px_60px_rgba(28,27,27,0.08)] backdrop-blur md:px-5">
-          <a href="#top" className="flex items-center gap-3" aria-label="ЛКК">
-            <span className="text-xl font-black leading-none tracking-normal">/ЛКК</span>
-          </a>
+    <header className="border-b border-black/10 bg-white">
+      <div className="page-shell flex h-[78px] items-center justify-between gap-6">
+        <a href="#top" className="text-2xl font-black leading-none" aria-label="ЛКК">
+          {content.company.logoText}
+        </a>
 
-          <nav className="hidden items-center gap-8 lg:flex" aria-label="Основная навигация">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="text-sm font-semibold text-neutral-700 transition hover:text-neutral-950"
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
-
-          <div className="hidden items-center gap-2 lg:flex">
-            <button
-              type="button"
-              aria-label="Текущий язык: русский"
-              className="inline-flex h-11 items-center gap-2 rounded-full border border-black/10 bg-white px-4 text-sm font-black"
-            >
-              <span aria-hidden="true">🇷🇺</span>
-              RU
-            </button>
-            <a href="#contacts" className="button-dark">
-              Связаться
+        <nav className="hidden items-center gap-16 text-sm font-semibold lg:flex" aria-label="Основная навигация">
+          {content.nav.map((item) => (
+            <a key={item.href} href={item.href} className="transition hover:text-neutral-500">
+              {item.label}
             </a>
-          </div>
+          ))}
+        </nav>
 
-          <button
-            type="button"
-            aria-label={open ? "Закрыть меню" : "Открыть меню"}
-            onClick={() => setOpen((value) => !value)}
-            className="grid h-11 w-11 place-items-center rounded-full border border-neutral-950 lg:hidden"
-          >
-            {open ? <X size={20} /> : <Menu size={20} />}
+        <div className="hidden items-center gap-3 lg:flex">
+          <a href="#contacts" className="rounded-full bg-[#1c1b1b] px-6 py-3 text-sm font-black text-white">
+            Связаться
+          </a>
+          <button className="rounded-full border border-[#1c1b1b] px-6 py-3 text-sm font-black" type="button">
+            Войти
           </button>
         </div>
+
+        <button
+          type="button"
+          aria-label={open ? "Закрыть меню" : "Открыть меню"}
+          onClick={() => setOpen((value) => !value)}
+          className="grid h-12 w-12 place-items-center rounded-full border border-[#1c1b1b] lg:hidden"
+        >
+          {open ? <X size={22} /> : <Menu size={22} />}
+        </button>
       </div>
 
       {open ? (
-        <div className="page-shell mt-2 lg:hidden">
-          <nav className="rounded-[22px] border border-black/10 bg-neutral-950 p-5 text-white" aria-label="Мобильная навигация">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="block border-b border-white/15 py-4 text-2xl font-black"
-              >
-                {item.label}
-              </a>
-            ))}
-            <div className="mt-5 flex gap-2">
-              <button type="button" className="button-light shrink-0 px-4" aria-label="Текущий язык: русский">
-                🇷🇺 RU
-              </button>
-              <a href="#contacts" onClick={() => setOpen(false)} className="button-light flex-1">
-                Связаться
-              </a>
-            </div>
-          </nav>
-        </div>
+        <nav className="border-t border-black/10 px-4 py-4 lg:hidden" aria-label="Мобильная навигация">
+          {content.nav.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={() => setOpen(false)}
+              className="block border-b border-black/10 py-4 text-2xl font-black"
+            >
+              {item.label}
+            </a>
+          ))}
+          <a href="#contacts" onClick={() => setOpen(false)} className="mt-5 inline-flex rounded-full bg-[#1c1b1b] px-6 py-3 text-sm font-black text-white">
+            Связаться
+          </a>
+        </nav>
       ) : null}
     </header>
   );

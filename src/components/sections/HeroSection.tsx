@@ -1,87 +1,86 @@
-import { ArrowRight, Box, Globe2, Settings2, ShieldCheck } from "lucide-react";
-import { company, hero, technicalFacts, whyChoose } from "../../data/site-data";
-
-const icons = [Globe2, Settings2, Box, ShieldCheck];
+import { ArrowRight } from "lucide-react";
+import { content } from "../../content/content";
 
 export function HeroSection() {
   return (
-    <section id="top" className="pt-6 md:pt-8">
+    <section id="top" className="overflow-hidden bg-white">
       <div className="page-shell">
-        <div className="surface">
-          <div className="grid gap-8 px-5 pb-0 pt-12 md:px-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:pt-16">
-            <div className="min-w-0">
-              <div>
-                <p className="eyebrow">/{hero.eyebrow}</p>
-                <h1 className="display-title mt-5 max-w-5xl" aria-label={hero.title}>
-                  {hero.titleLines.map((line) => (
-                    <span key={line} className="block">
-                      {line}
-                    </span>
-                  ))}
-                </h1>
-              </div>
-            </div>
-
-            <aside className="flex flex-col items-start justify-start gap-6 lg:pt-20">
-              <p className="max-w-sm text-base font-semibold leading-snug text-neutral-800">{hero.lead}</p>
-              <a href="#services" className="button-dark">
-                Узнать больше <ArrowRight size={16} />
-              </a>
-            </aside>
-          </div>
-
-          <div className="relative mt-7 min-h-[330px] overflow-hidden bg-neutral-200 md:min-h-[500px]">
-            <img
-              src={hero.image}
-              alt="Контейнерное депо ЛКК в Новороссийске"
-              className="h-full min-h-[330px] w-full object-cover object-[center_56%] md:min-h-[500px]"
-            />
-            <div className="absolute left-6 top-6 rounded-full bg-white/90 px-4 py-2 text-xs font-black text-neutral-900">
-              {company.shortName}
-            </div>
-            <div className="absolute bottom-6 left-6 max-w-xs rounded-[16px] bg-white/90 p-4 text-neutral-950 backdrop-blur">
-              <p className="text-sm font-black">Новороссийск</p>
-              <p className="mt-2 text-sm font-semibold leading-snug">г. Новороссийск, ул. 5-я Промышленная, 9</p>
-            </div>
-          </div>
-
-          <div className="grid border-t border-black/10 md:grid-cols-3 xl:grid-cols-6">
-            {technicalFacts.map((fact) => (
-              <div key={fact.label} className="border-b border-black/10 p-5 md:border-r xl:border-b-0">
-                <p className="text-3xl font-black leading-none text-neutral-950 md:text-4xl">{fact.value}</p>
-                <p className="mt-2 text-sm font-semibold leading-tight text-neutral-600">{fact.label}</p>
-              </div>
-            ))}
+        <div className="grid gap-8 pb-2 pt-16 lg:grid-cols-[1fr_360px] lg:items-start lg:pt-20">
+          <h1
+            className="max-w-5xl text-[clamp(2.8rem,5.65vw,6.25rem)] font-black leading-[1.02] tracking-normal"
+            aria-label={content.hero.title}
+          >
+            <span className="hidden md:block">
+              {content.hero.linesDesktop.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
+            </span>
+            <span className="block md:hidden">
+              {content.hero.linesMobile.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
+            </span>
+          </h1>
+          <div className="max-w-sm lg:pt-7">
+            <p className="text-lg font-semibold leading-snug">{content.hero.text}</p>
+            <a href="#services" className="mt-9 inline-flex items-center gap-3 rounded-full bg-[#1c1b1b] px-7 py-4 text-sm font-black text-white">
+              {content.hero.button}
+              <ArrowRight size={17} />
+            </a>
           </div>
         </div>
 
-        <div className="surface mt-5 p-5 md:p-8">
-          <div className="grid gap-8 md:grid-cols-[minmax(0,0.8fr)_minmax(280px,0.45fr)]">
-            <div>
-              <p className="eyebrow">/Почему выбирают нас</p>
-              <h2 className="mt-4 max-w-3xl text-4xl font-black leading-tight md:text-6xl">
-                Надежные и эффективные решения для контейнерного оборота
-              </h2>
-            </div>
-            <p className="text-base font-semibold leading-relaxed text-neutral-700">
-              ЛКК помогает операторам и грузовладельцам держать скорость, контроль и качество на каждом этапе обработки.
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {whyChoose.map((item, index) => {
-              const Icon = icons[index];
-              return (
-                <article key={item.title}>
-                  <Icon size={20} strokeWidth={2.2} />
-                  <h3 className="mt-5 text-xl font-black">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-neutral-600">{item.text}</p>
-                </article>
-              );
-            })}
-          </div>
+        <div className="relative -mt-2 min-h-[430px] overflow-hidden md:min-h-[590px] lg:min-h-[620px]">
+          <ContainerIllustration />
         </div>
       </div>
     </section>
+  );
+}
+
+function ContainerIllustration() {
+  return (
+    <div className="absolute bottom-0 left-0 right-0 h-[94%] w-full max-w-none md:inset-x-1/2 md:w-[1600px] md:-translate-x-1/2">
+      <div className="absolute bottom-[9%] left-[4%] h-[40%] w-[38%] bg-[#75836b] shadow-[inset_0_0_0_2px_rgba(0,0,0,0.18)]">
+        <ContainerRibs count={16} />
+      </div>
+      <div className="absolute bottom-[42%] left-[16%] h-[42%] w-[62%] bg-[#7f9275] shadow-[inset_0_0_0_2px_rgba(0,0,0,0.22)]">
+        <ContainerRibs count={26} />
+        <div className="absolute left-[5%] top-0 h-full w-[17%] bg-[#506746] shadow-[inset_0_0_0_2px_rgba(0,0,0,0.2)]">
+          <ContainerRibs count={5} dark />
+          <div className="absolute inset-y-5 left-1/2 w-[2px] -translate-x-1/2 bg-white/70" />
+          <div className="absolute inset-x-4 top-1/2 h-[2px] bg-white/70" />
+        </div>
+        <div className="absolute right-[10%] top-[42%] text-[92px] font-light tracking-[-0.05em] text-white/85">/ЛКК</div>
+        <div className="absolute left-[34%] top-[32%] text-sm font-semibold leading-tight text-white/80">
+          Cargo container
+          <br />
+          no. 02398716253
+        </div>
+      </div>
+      <div className="absolute bottom-0 left-[16%] h-[22%] w-[62%] bg-[#ececea] shadow-[inset_0_0_0_2px_rgba(0,0,0,0.12)]">
+        <ContainerRibs count={26} light />
+      </div>
+      <div className="absolute bottom-[5%] right-[1%] h-[36%] w-[29%] bg-[#e6e7e4] shadow-[inset_0_0_0_2px_rgba(0,0,0,0.1)]">
+        <ContainerRibs count={12} light />
+      </div>
+    </div>
+  );
+}
+
+function ContainerRibs({ count, dark = false, light = false }: { count: number; dark?: boolean; light?: boolean }) {
+  return (
+    <div className="absolute inset-0 flex">
+      {Array.from({ length: count }).map((_, index) => (
+        <span
+          key={index}
+          className={`h-full flex-1 border-r ${dark ? "border-black/22" : light ? "border-black/10" : "border-black/16"}`}
+        />
+      ))}
+    </div>
   );
 }

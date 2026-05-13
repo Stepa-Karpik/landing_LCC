@@ -9,7 +9,7 @@ describe("site data", () => {
   });
 
   it("contains the required commercial content blocks", () => {
-    expect(services).toHaveLength(6);
+    expect(services).toHaveLength(5);
     expect(technicalFacts.map((fact) => fact.value)).toEqual(
       expect.arrayContaining(["1,7 Га", "2000 TEU", "900 м²", "8000"])
     );

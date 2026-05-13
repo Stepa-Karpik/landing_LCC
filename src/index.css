@@ -31,7 +31,8 @@ section {
 body {
   min-width: 320px;
   margin: 0;
-  background: #9ca290;
+  background: #ffffff;
+  overflow-x: hidden;
 }
 
 img {
@@ -51,11 +52,11 @@ textarea {
 
 @layer components {
   .page-shell {
-    @apply mx-auto w-full max-w-page px-4 sm:px-6 lg:px-12;
+    @apply mx-auto w-full max-w-page px-4 md:px-6;
   }
 
   .section-pad {
-    @apply py-8 md:py-10 lg:py-12;
+    @apply py-16 md:py-20 lg:py-24;
   }
 
   .eyebrow {
@@ -63,13 +64,13 @@ textarea {
   }
 
   .display-title {
-    @apply text-[clamp(2.55rem,6.7vw,7.6rem)] font-black leading-[0.92] tracking-normal;
+    @apply text-[clamp(3.25rem,7vw,7.5rem)] font-black leading-[0.98] tracking-normal;
     hyphens: none;
     overflow-wrap: normal;
   }
 
   .section-title {
-    @apply text-[clamp(2.25rem,4.2vw,5rem)] font-black leading-[0.96] tracking-normal;
+    @apply text-[clamp(2.65rem,4.7vw,5.25rem)] font-black leading-[1.04] tracking-normal;
     hyphens: auto;
     overflow-wrap: break-word;
   }
