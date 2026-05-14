@@ -60,9 +60,6 @@ export function GallerySection() {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/76 via-black/16 to-transparent" />
                       <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
                         <h2 className="max-w-[15rem] text-2xl font-black leading-none">{image.title}</h2>
-                        <p className="mt-3 max-w-[17rem] text-sm font-bold leading-tight text-white/76">
-                          {image.caption}
-                        </p>
                       </div>
                     </>
                   ) : null}

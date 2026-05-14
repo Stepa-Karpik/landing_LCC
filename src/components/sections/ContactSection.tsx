@@ -27,23 +27,24 @@ export function ContactSection() {
           </div>
         </div>
 
-        <div className="mt-20 grid max-w-5xl gap-10 border-t border-black/10 pt-10 lg:ml-auto">
-          <ContactCard label="" value={company.name} />
-          <ContactCard label="" value={company.schedule} />
-          <ContactCard label="" value={company.address} />
-          <ContactCard label="" value={company.phone} />
-          <ContactCard label="" value={company.email} />
+        <div className="mt-20 grid w-full border-t border-black/10">
+          <ContactCard value={company.name} />
+          <ContactCard value={company.schedule} />
+          <ContactCard value={company.address} />
+          <ContactCard value={company.phone} />
+          <ContactCard value={company.email} />
         </div>
       </div>
     </section>
   );
 }
 
-function ContactCard({ label, value }: { label: string; value: string }) {
+function ContactCard({ value }: { value: string }) {
   return (
-    <article className="grid gap-5 border-b border-black/10 pb-8 md:grid-cols-[180px_minmax(0,1fr)] md:items-start">
-      <p className="text-xs font-black uppercase tracking-[0.16em] text-neutral-500">{label}</p>
-      <p className="text-[clamp(2rem,4vw,4.8rem)] font-black leading-none tracking-normal">{value}</p>
+    <article className="w-full border-b border-black/10 py-9 md:py-11">
+      <p className="w-full text-left text-[clamp(2.25rem,5.15vw,6.35rem)] font-black leading-[0.94] tracking-normal [overflow-wrap:anywhere]">
+        {value}
+      </p>
     </article>
   );
 }

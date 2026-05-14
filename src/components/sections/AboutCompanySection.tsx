@@ -49,38 +49,42 @@ export function AboutCompanySection() {
           </div>
 
           <div className="xl:sticky xl:top-24 xl:self-start">
-            <AnimatePresence>
-              <motion.aside
-                key={activeEvent.year}
-                initial={{ opacity: 0.55, y: 8, filter: "blur(5px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -6, filter: "blur(4px)" }}
-                transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
-                className="grid min-h-[640px] overflow-hidden rounded-[28px] bg-white lg:grid-cols-[620px_minmax(360px,1fr)]"
-              >
-                <div className="h-[380px] overflow-hidden lg:h-[620px] lg:w-[620px]">
+            <motion.aside className="grid min-h-[640px] overflow-hidden rounded-[28px] bg-white lg:grid-cols-[620px_minmax(360px,1fr)]">
+              <div className="relative h-[380px] overflow-hidden lg:h-[620px] lg:w-[620px]">
+                <AnimatePresence initial={false}>
                   <motion.img
+                    key={activeEvent.image}
                     src={activeEvent.image}
                     alt={activeEvent.title}
-                    className="h-full w-full object-cover"
-                    initial={{ scale: 1.06, y: 16 }}
-                    animate={{ scale: 1, y: 0 }}
-                    transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute inset-0 h-full w-full object-cover"
+                    initial={{ opacity: 0, scale: 1.035, y: 10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
                   />
-                </div>
-                <div className="grid content-between p-7 md:p-9 lg:border-l lg:border-black/10">
-                  <div>
-                    <p className="text-[clamp(3.5rem,8vw,8rem)] font-black leading-none">{activeEvent.metric}</p>
-                    <h2 className="mt-7 border-t border-black/14 pt-7 text-[clamp(2rem,3vw,4rem)] font-black leading-none">
-                      {activeEvent.title}
-                    </h2>
-                  </div>
-                  <p className="mt-10 border-t border-black/14 pt-7 text-lg font-bold leading-snug text-neutral-700">
-                    {activeEvent.longText}
-                  </p>
-                </div>
-              </motion.aside>
-            </AnimatePresence>
+                </AnimatePresence>
+              </div>
+              <div className="relative min-h-[390px] overflow-hidden lg:min-h-[620px] lg:border-l lg:border-black/10">
+                <AnimatePresence initial={false}>
+                  <motion.div
+                    key={activeEvent.year}
+                    className="absolute inset-0 grid content-between p-7 md:p-9"
+                    initial={{ opacity: 0, y: 14, filter: "blur(5px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    exit={{ opacity: 0, y: -10, filter: "blur(4px)" }}
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <div>
+                      <p className="text-[clamp(3.5rem,8vw,8rem)] font-black leading-none">{activeEvent.metric}</p>
+                      <h2 className="mt-7 border-t border-black/14 pt-7 text-[clamp(2rem,3vw,4rem)] font-black leading-none">{activeEvent.title}</h2>
+                    </div>
+                    <p className="mt-10 border-t border-black/14 pt-7 text-lg font-bold leading-snug text-neutral-700">
+                      {activeEvent.longText}
+                    </p>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </motion.aside>
           </div>
         </div>
       </div>

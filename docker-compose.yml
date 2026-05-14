@@ -1,0 +1,11 @@
+services:
+  landing-lcc:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_YANDEX_MAPS_API_KEY: ${VITE_YANDEX_MAPS_API_KEY:-a401be54-8b5f-4398-9b12-cd629839d0c5}
+    image: landing-lcc:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8085:80"
