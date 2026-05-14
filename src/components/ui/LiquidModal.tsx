@@ -15,7 +15,7 @@ export function LiquidModal({ open, title, onClose, children, wide = false }: Li
     <AnimatePresence>
       {open ? (
         <motion.div
-          className="fixed inset-0 z-[90] grid place-items-center bg-white/28 p-4 backdrop-blur-[22px]"
+          className="fixed inset-0 z-[90] grid place-items-center bg-white/34 p-4 backdrop-blur-[26px]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -30,7 +30,7 @@ export function LiquidModal({ open, title, onClose, children, wide = false }: Li
             exit={{ opacity: 0, y: 24, scale: 0.985 }}
             transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
             onMouseDown={(event) => event.stopPropagation()}
-            className={`relative max-h-[90svh] w-full overflow-hidden rounded-[28px] border border-white/55 bg-white/72 shadow-[0_40px_140px_rgba(28,27,27,0.22)] backdrop-blur-2xl ${
+            className={`relative max-h-[90svh] w-full overflow-y-auto rounded-[28px] bg-white shadow-[0_40px_140px_rgba(28,27,27,0.2)] ${
               wide ? "max-w-6xl" : "max-w-4xl"
             }`}
           >

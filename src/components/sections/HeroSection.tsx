@@ -1,4 +1,4 @@
-import { Activity, BadgeCheck, DatabaseZap, MapPin, Phone, ShieldCheck } from "lucide-react";
+import { DatabaseZap, MapPin, Phone, ShieldCheck } from "lucide-react";
 import type { ReactNode } from "react";
 import { useState } from "react";
 import { useSiteContent } from "../../context/LanguageContext";
@@ -26,12 +26,12 @@ export function HeroSection() {
       />
 
       <LiquidModal open={modal === "map"} onClose={() => setModal(null)} wide title={copy.about.items[0].title}>
-        <div className="h-[min(76svh,720px)] p-3">
+        <div className="h-[min(76svh,720px)]">
           <YandexMap
             coordinates={copy.company.coordinates}
             title={copy.company.shortName}
             address={copy.company.address}
-            className="h-full min-h-full rounded-[22px]"
+            className="h-full min-h-full rounded-[28px] border-0"
           />
         </div>
       </LiquidModal>
@@ -58,7 +58,7 @@ export function HeroSection() {
               <p>{copy.company.email}</p>
             </div>
           </div>
-          <ContactRequestForm dark />
+          <ContactRequestForm compact />
         </div>
       </LiquidModal>
 
@@ -107,25 +107,25 @@ function ModalKnowledge({
   rows: string[];
 }) {
   return (
-    <div className="grid gap-8 p-6 md:grid-cols-[0.8fr_1.2fr] md:p-10">
-      <div className="rounded-[24px] bg-[#1c1b1b] p-8 text-white">
-        <div className="grid h-16 w-16 place-items-center rounded-full bg-white text-[#1c1b1b]">{icon}</div>
-        <h2 className="mt-10 text-[clamp(2.4rem,4vw,5rem)] font-black leading-none">{title}</h2>
-        <p className="mt-6 text-lg font-semibold leading-snug text-white/74">{lead}</p>
+    <div className="grid gap-8 p-6 md:grid-cols-[0.86fr_1.14fr] md:p-10">
+      <div className="flex min-h-[360px] flex-col justify-between">
+        <div>
+          <div className="grid h-14 w-14 place-items-center rounded-full bg-[#1c1b1b] text-white">{icon}</div>
+          <h2 className="mt-9 text-[clamp(2.4rem,4vw,5rem)] font-black leading-none">{title}</h2>
+        </div>
+        <p className="mt-8 text-lg font-semibold leading-snug text-neutral-700">{lead}</p>
       </div>
-      <div className="grid gap-5">
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+      <div className="grid content-between gap-8">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4">
           {facts.map((fact) => (
-            <div key={fact} className="rounded-[20px] border border-black/10 bg-white/74 p-5">
-              <Activity size={20} />
-              <p className="mt-8 text-2xl font-black">{fact}</p>
+            <div key={fact} className="border-t border-black/18 pt-4">
+              <p className="text-[clamp(1.8rem,3vw,3.4rem)] font-black leading-none">{fact}</p>
             </div>
           ))}
         </div>
-        <div className="grid gap-3">
+        <div className="grid gap-0">
           {rows.map((row) => (
-            <div key={row} className="flex gap-4 rounded-[18px] border border-black/10 bg-white/74 p-5 text-base font-bold leading-snug text-neutral-700">
-              <BadgeCheck className="mt-0.5 shrink-0 text-[#1c1b1b]" size={20} />
+            <div key={row} className="border-t border-black/10 py-5 text-lg font-bold leading-snug text-neutral-700 last:border-b">
               {row}
             </div>
           ))}

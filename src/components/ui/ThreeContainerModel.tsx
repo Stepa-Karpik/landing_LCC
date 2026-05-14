@@ -10,10 +10,10 @@ type ThreeContainerModelProps = {
 };
 
 const poses = [
-  { x: -0.45, y: 0.24, z: 0, rx: -0.08, ry: -0.78, rz: 0.02 },
-  { x: 0.52, y: 0.28, z: 0, rx: 0.02, ry: 0.62, rz: -0.02 },
-  { x: -0.42, y: 0.34, z: 0, rx: -0.02, ry: -1.35, rz: 0.01 },
-  { x: 0.5, y: 0.26, z: 0, rx: 0.04, ry: 1.1, rz: -0.03 },
+  { x: -0.34, y: 0.22, z: 0, rx: -0.08, ry: -0.78, rz: 0.02 },
+  { x: 0.34, y: 0.26, z: 0, rx: 0.02, ry: 0.62, rz: -0.02 },
+  { x: -0.28, y: 0.32, z: 0, rx: -0.02, ry: -1.35, rz: 0.01 },
+  { x: 0.3, y: 0.24, z: 0, rx: 0.04, ry: 1.1, rz: -0.03 },
 ];
 
 export function ThreeContainerModel({ activeIndex, total, className }: ThreeContainerModelProps) {
@@ -51,6 +51,13 @@ export function ThreeContainerModel({ activeIndex, total, className }: ThreeCont
     const key = new THREE.DirectionalLight(0xffffff, 4.6);
     key.position.set(4, 5, 5);
     key.castShadow = true;
+    key.shadow.mapSize.set(2048, 2048);
+    key.shadow.camera.left = -8;
+    key.shadow.camera.right = 8;
+    key.shadow.camera.top = 8;
+    key.shadow.camera.bottom = -8;
+    key.shadow.camera.near = 0.1;
+    key.shadow.camera.far = 28;
     scene.add(key);
 
     const fill = new THREE.DirectionalLight(0xffffff, 3.1);
@@ -61,11 +68,11 @@ export function ThreeContainerModel({ activeIndex, total, className }: ThreeCont
     scene.add(ambient);
 
     const floor = new THREE.Mesh(
-      new THREE.PlaneGeometry(9, 4),
-      new THREE.ShadowMaterial({ color: 0x000000, opacity: 0.09 })
+      new THREE.PlaneGeometry(14, 7),
+      new THREE.ShadowMaterial({ color: 0x000000, opacity: 0.085 })
     );
     floor.rotation.x = -Math.PI / 2;
-    floor.position.y = -1.25;
+    floor.position.set(0, -1.34, 0);
     floor.receiveShadow = true;
     scene.add(floor);
 
@@ -97,7 +104,7 @@ export function ThreeContainerModel({ activeIndex, total, className }: ThreeCont
 
       const wrapper = new THREE.Group();
       wrapper.add(root);
-      wrapper.scale.setScalar(2.15 / maxSize);
+      wrapper.scale.setScalar(2.08 / maxSize);
       scene.add(wrapper);
       loaded = wrapper;
       modelRef.current = wrapper;

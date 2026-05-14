@@ -24,7 +24,7 @@ export function ContactSection() {
               <p className="mt-5 max-w-xl text-lg font-bold leading-snug text-neutral-700">{copy.contact.text}</p>
             </div>
             <div className="mt-8">
-              <ContactRequestForm />
+              <ContactRequestForm compact labelBg="soft" />
             </div>
           </div>
         </div>

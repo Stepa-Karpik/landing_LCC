@@ -1,29 +1,39 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 import { useSiteContent } from "../../context/LanguageContext";
+
+const inactiveSlots = [
+  "lg:col-start-3 lg:row-start-1",
+  "lg:col-start-3 lg:row-start-2",
+  "lg:col-start-1 lg:row-start-3",
+  "lg:col-start-2 lg:row-start-3",
+  "lg:col-start-3 lg:row-start-3",
+];
 
 export function ServicesSection() {
   const copy = useSiteContent();
   const [active, setActive] = useState(0);
+  const inactiveIndexes = copy.services.cards.map((_, index) => index).filter((index) => index !== active);
 
   return (
-    <section className="min-h-[calc(100svh-3.5rem)] border-t border-black/10 bg-white py-10 md:py-12">
+    <section className="min-h-[calc(100svh-3.5rem)] border-t border-black/10 bg-white py-6 md:py-8">
       <div className="page-shell">
-        <h1 className="max-w-6xl text-[clamp(3.3rem,6vw,8rem)] font-black leading-[0.95] tracking-normal">
-          {copy.services.title}
-        </h1>
-
-        <motion.div layout className="mt-10 grid auto-rows-[250px] gap-5 lg:grid-cols-3 xl:auto-rows-[285px]">
+        <motion.div
+          layout
+          className="grid auto-rows-[230px] gap-4 lg:h-[calc(100svh-7.5rem)] lg:min-h-[700px] lg:grid-cols-3 lg:grid-rows-3 xl:min-h-[760px]"
+        >
           {copy.services.cards.map((card, index) => {
             const isActive = active === index;
+            const inactiveSlot = inactiveSlots[inactiveIndexes.indexOf(index)] || "";
             return (
               <motion.article
                 layout
                 key={card.title}
                 onClick={() => setActive(index)}
                 className={`group relative cursor-pointer overflow-hidden rounded-[22px] bg-neutral-950 text-white ${
-                  isActive ? "lg:col-span-2 lg:row-span-2" : ""
+                  isActive ? "lg:col-span-2 lg:row-span-2 lg:col-start-1 lg:row-start-1" : inactiveSlot
+                } ${isActive ? "min-h-[440px] lg:min-h-0" : ""
                 }`}
                 transition={{ layout: { duration: 0.58, ease: [0.16, 1, 0.3, 1] } }}
               >
@@ -32,34 +42,37 @@ export function ServicesSection() {
                   alt={card.title}
                   className="absolute inset-0 h-full w-full object-cover opacity-82 transition duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/78 via-black/20 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
+                <div className={`absolute inset-0 ${isActive ? "bg-gradient-to-t from-black/60 via-black/10 to-transparent" : "bg-gradient-to-t from-black/78 via-black/20 to-transparent"}`} />
+                <div className={`absolute inset-x-0 p-6 md:p-8 ${isActive ? "bottom-[198px] md:bottom-[156px]" : "bottom-0"}`}>
                   <div className="flex items-end justify-between gap-5">
-                    <h2 className="max-w-xl text-[clamp(1.8rem,3vw,4rem)] font-black leading-none">{card.title}</h2>
+                    <h2 className={`max-w-xl font-black leading-none ${isActive ? "text-[clamp(2.25rem,4.2vw,5.2rem)]" : "text-[clamp(1.45rem,2vw,2.4rem)]"}`}>
+                      {card.title}
+                    </h2>
                     <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-white text-[#1c1b1b] transition group-hover:rotate-45">
                       <ArrowUpRight size={22} />
                     </span>
                   </div>
+                </div>
 
-                  <AnimatePresence initial={false}>
-                    {isActive ? (
-                      <motion.ul
-                        initial={{ opacity: 0, y: 18, height: 0 }}
-                        animate={{ opacity: 1, y: 0, height: "auto" }}
-                        exit={{ opacity: 0, y: 18, height: 0 }}
-                        transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
-                        className="mt-7 grid gap-3 overflow-hidden md:grid-cols-2"
-                      >
+                <AnimatePresence initial={false}>
+                  {isActive ? (
+                    <motion.div
+                      initial={{ opacity: 0, y: 28 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 24 }}
+                      transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
+                      className="absolute inset-x-0 bottom-0 min-h-[198px] bg-white px-6 py-5 text-[#1c1b1b] md:min-h-[156px] md:px-8"
+                    >
+                      <ul className="grid gap-x-8 gap-y-2 md:grid-cols-2">
                         {card.details.map((detail) => (
-                          <li key={detail} className="flex gap-3 rounded-full bg-white/12 px-4 py-3 text-sm font-bold leading-snug text-white backdrop-blur">
-                            <Check className="mt-0.5 shrink-0" size={16} />
+                          <li key={detail} className="text-base font-black leading-tight">
                             {detail}
                           </li>
                         ))}
-                      </motion.ul>
-                    ) : null}
-                  </AnimatePresence>
-                </div>
+                      </ul>
+                    </motion.div>
+                  ) : null}
+                </AnimatePresence>
               </motion.article>
             );
           })}

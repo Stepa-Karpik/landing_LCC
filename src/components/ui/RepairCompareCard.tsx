@@ -13,6 +13,7 @@ type RepairCompareCardProps = {
 export function RepairCompareCard({ before, after, title, caption, index }: RepairCompareCardProps) {
   const [position, setPosition] = useState(52);
   const frame = useRef<HTMLDivElement>(null);
+  const dragging = useRef(false);
 
   const updatePosition = (clientX: number) => {
     const bounds = frame.current?.getBoundingClientRect();
@@ -34,9 +35,22 @@ export function RepairCompareCard({ before, after, title, caption, index }: Repa
     >
       <div
         ref={frame}
-        onPointerMove={(event) => updatePosition(event.clientX)}
-        onPointerLeave={() => setPosition(52)}
-        className="relative aspect-[4/3] overflow-hidden rounded-[20px] bg-neutral-900"
+        onPointerDown={(event) => {
+          dragging.current = true;
+          event.currentTarget.setPointerCapture(event.pointerId);
+          updatePosition(event.clientX);
+        }}
+        onPointerMove={(event) => {
+          if (dragging.current) updatePosition(event.clientX);
+        }}
+        onPointerUp={(event) => {
+          dragging.current = false;
+          event.currentTarget.releasePointerCapture(event.pointerId);
+        }}
+        onPointerCancel={() => {
+          dragging.current = false;
+        }}
+        className="relative aspect-[4/3] cursor-ew-resize touch-none overflow-hidden rounded-[20px] bg-neutral-900"
       >
         <img
           src={after}
@@ -61,9 +75,6 @@ export function RepairCompareCard({ before, after, title, caption, index }: Repa
             <MoveHorizontal size={17} aria-hidden="true" />
           </span>
         </div>
-        <span className="absolute left-5 top-5 text-[0.68rem] font-black uppercase tracking-[0.16em] text-white/78">
-          {String(index + 1).padStart(2, "0")}
-        </span>
       </div>
 
       <div className="pt-5">

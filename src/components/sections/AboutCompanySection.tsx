@@ -1,34 +1,24 @@
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 import { useSiteContent } from "../../context/LanguageContext";
 
 export function AboutCompanySection() {
   const copy = useSiteContent();
   const [active, setActive] = useState(0);
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
-  const lineScale = useTransform(scrollYProgress, [0.18, 0.82], [0, 1]);
   const activeEvent = copy.aboutCompany.timeline[active];
+  const progressWidth = `${(active / Math.max(1, copy.aboutCompany.timeline.length - 1)) * 100}%`;
 
   return (
-    <section ref={sectionRef} className="min-h-[calc(100svh-3.5rem)] border-t border-black/10 bg-white py-12 md:py-16">
+    <section className="min-h-[calc(100svh-3.5rem)] border-t border-black/10 bg-white py-12 md:py-16">
       <div className="page-shell">
         <div>
           <h1 className="text-[clamp(3.4rem,7.2vw,9rem)] font-black leading-[0.9] tracking-normal">
             {copy.aboutCompany.title}
           </h1>
-          <p className="mt-8 max-w-3xl text-xl font-bold leading-snug text-neutral-700 lg:ml-auto">
-            {copy.aboutCompany.statement}
-          </p>
         </div>
 
         <div className="mt-16 grid gap-10 xl:grid-cols-[1fr_520px]">
           <div className="relative">
-            <div className="absolute left-0 right-0 top-[4.1rem] hidden h-px bg-black/12 md:block" />
-            <motion.div
-              className="absolute left-0 top-[4.1rem] hidden h-px origin-left bg-[#1c1b1b] md:block"
-              style={{ right: 0, scaleX: lineScale }}
-            />
             <div className="grid gap-8 md:grid-cols-5">
               {copy.aboutCompany.timeline.map((event, index) => {
                 const isActive = active === index;
@@ -51,6 +41,13 @@ export function AboutCompanySection() {
                   </button>
                 );
               })}
+            </div>
+            <div className="mt-10 h-px w-full bg-black/10">
+              <motion.div
+                className="h-px bg-[#1c1b1b]"
+                animate={{ width: progressWidth }}
+                transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
+              />
             </div>
           </div>
 
