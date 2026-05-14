@@ -22,7 +22,7 @@ export function Footer() {
   return (
     <footer className="border-t border-black/10 bg-white py-4">
       <div className="page-shell">
-        <div className="grid gap-4 text-sm font-semibold text-neutral-600 md:grid-cols-[1.25fr_1fr_0.85fr] md:items-start">
+        <div className="grid gap-4 text-sm font-semibold text-neutral-600 md:grid-cols-[1.15fr_1fr_0.85fr] md:items-start lg:grid-cols-[1.25fr_1fr_0.85fr]">
           <div>
             <p className="text-xl font-black text-[#1c1b1b]">{copy.company.logoText}</p>
             <p className="mt-2 max-w-3xl text-xs leading-relaxed">{copy.footer.rights}</p>
@@ -63,7 +63,7 @@ function FooterLine({
     <button
       type="button"
       onClick={onClick}
-      className="flex min-w-0 items-start gap-3 text-left transition hover:text-[#1c1b1b]"
+      className="flex min-h-11 min-w-0 items-start gap-3 text-left transition hover:text-[#1c1b1b]"
     >
       <span className="mt-0.5 text-[#1c1b1b]">{icon}</span>
       <span className="relative block min-h-5 overflow-hidden">

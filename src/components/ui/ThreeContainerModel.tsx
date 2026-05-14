@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import modelUrl from "../../assets/3D_models/Без имени.glb?url";
+import modelUrl from "../../assets/3D_models/container.glb?url";
 
 type ThreeContainerModelProps = {
   activeIndex: number;

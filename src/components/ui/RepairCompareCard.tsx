@@ -78,7 +78,7 @@ export function RepairCompareCard({ before, after, title, caption, index }: Repa
       </div>
 
       <div className="pt-5">
-        <h3 className="text-[1.35rem] font-black leading-tight">{title}</h3>
+        <h3 className="text-[1.22rem] font-black leading-tight md:text-[1.35rem]">{title}</h3>
         <p className="mt-3 text-sm font-semibold leading-relaxed text-neutral-700">{caption}</p>
       </div>
     </motion.article>

@@ -25,7 +25,7 @@ export function HeroSection() {
       />
 
       <LiquidModal open={modal === "map"} onClose={() => setModal(null)} wide title={copy.about.items[0].title}>
-        <div className="h-[min(76svh,720px)]">
+        <div className="h-[min(76svh,720px)] min-h-[320px]">
           <YandexMap
             coordinates={copy.company.coordinates}
             title={copy.company.shortName}
@@ -36,16 +36,16 @@ export function HeroSection() {
       </LiquidModal>
 
       <LiquidModal open={modal === "contact"} onClose={() => setModal(null)} wide title={copy.about.items[1].title}>
-        <div className="grid gap-8 p-5 md:grid-cols-[0.85fr_1.15fr] md:p-8">
-          <div className="flex flex-col justify-between rounded-[24px] bg-white/76 p-7">
+        <div className="grid gap-6 p-4 md:grid-cols-[0.85fr_1.15fr] md:gap-8 md:p-8">
+          <div className="flex flex-col justify-between rounded-[22px] bg-white/76 p-5 md:rounded-[24px] md:p-7">
             <div>
               <p className="text-sm font-black uppercase tracking-[0.18em] text-neutral-500">{copy.company.logoText}</p>
-              <h2 className="mt-6 text-[clamp(2.2rem,4vw,4.8rem)] font-black leading-none">
+              <h2 className="mt-5 text-[clamp(2rem,10vw,4.8rem)] font-black leading-none md:mt-6 md:text-[clamp(2.2rem,4vw,4.8rem)]">
                 {copy.about.items[1].title}
               </h2>
-              <p className="mt-5 text-lg font-semibold leading-snug text-neutral-700">{copy.about.items[1].text}</p>
+              <p className="mt-5 text-base font-semibold leading-snug text-neutral-700 md:text-lg">{copy.about.items[1].text}</p>
             </div>
-            <div className="mt-10 grid gap-4 text-base font-bold">
+            <div className="mt-8 grid gap-4 text-base font-bold md:mt-10">
               <p className="flex gap-3">
                 <MapPin className="mt-1 shrink-0" size={18} />
                 {copy.company.address}
@@ -102,24 +102,24 @@ function ModalKnowledge({
   rows: string[];
 }) {
   return (
-    <div className="grid gap-8 p-6 md:grid-cols-[0.86fr_1.14fr] md:p-10">
-      <div className="flex min-h-[360px] flex-col justify-between">
+      <div className="grid gap-8 p-6 md:grid-cols-[0.86fr_1.14fr] md:p-10">
+      <div className="flex min-h-[240px] flex-col justify-between md:min-h-[360px]">
         <div>
-          <h2 className="text-[clamp(2.4rem,4vw,5rem)] font-black leading-none">{title}</h2>
+          <h2 className="text-[clamp(2.05rem,10vw,5rem)] font-black leading-none md:text-[clamp(2.4rem,4vw,5rem)]">{title}</h2>
         </div>
-        <p className="mt-8 text-lg font-semibold leading-snug text-neutral-700">{lead}</p>
+        <p className="mt-8 text-base font-semibold leading-snug text-neutral-700 md:text-lg">{lead}</p>
       </div>
       <div className="grid content-between gap-8">
         <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4">
           {facts.map((fact) => (
             <div key={fact} className="border-t border-black/18 pt-4">
-              <p className="text-[clamp(1.8rem,3vw,3.4rem)] font-black leading-none">{fact}</p>
+              <p className="text-[clamp(1.55rem,8vw,3.4rem)] font-black leading-none md:text-[clamp(1.8rem,3vw,3.4rem)]">{fact}</p>
             </div>
           ))}
         </div>
         <div className="grid gap-0">
           {rows.map((row) => (
-            <div key={row} className="border-t border-black/10 py-5 text-lg font-bold leading-snug text-neutral-700 last:border-b">
+            <div key={row} className="border-t border-black/10 py-5 text-base font-bold leading-snug text-neutral-700 last:border-b md:text-lg">
               {row}
             </div>
           ))}

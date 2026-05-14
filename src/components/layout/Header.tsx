@@ -10,12 +10,17 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-black/10 bg-white/92 backdrop-blur-xl">
-      <div className="page-shell flex h-14 items-center justify-between gap-5">
-        <Link to="/" className="text-2xl font-black leading-none" aria-label={copy.company.shortName} onClick={() => setOpen(false)}>
+      <div className="page-shell flex h-14 items-center justify-between gap-3 md:gap-5">
+        <Link
+          to="/"
+          className="inline-flex min-h-11 items-center text-2xl font-black leading-none"
+          aria-label={copy.company.shortName}
+          onClick={() => setOpen(false)}
+        >
           {copy.company.logoText}
         </Link>
 
-        <nav className="hidden items-center gap-6 text-sm font-bold xl:gap-10 lg:flex" aria-label="Основная навигация">
+        <nav className="hidden items-center gap-2 text-sm font-bold xl:gap-5 lg:flex" aria-label="Основная навигация">
           {copy.nav.map((item) => (
             <NavLink key={item.href} to={item.href} end={item.href === "/"} className={navLinkClass}>
               {item.label}
@@ -23,8 +28,8 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
-          <Link to="/contacts" className="rounded-full bg-[#1c1b1b] px-6 py-2.5 text-sm font-black text-white transition hover:bg-neutral-700">
+        <div className="hidden items-center gap-2 lg:flex">
+          <Link to="/contacts" className="inline-flex min-h-10 items-center rounded-full bg-[#1c1b1b] px-5 text-sm font-black text-white transition hover:bg-neutral-700 xl:px-6">
             {language === "ru" ? "Контакты" : "Contacts"}
           </Link>
           <LanguageToggle language={language} setLanguage={setLanguage} />
@@ -51,7 +56,7 @@ export function Header() {
             className="overflow-hidden border-t border-black/10 bg-white px-4 lg:hidden"
             aria-label="Мобильная навигация"
           >
-            <div className="py-4">
+            <div className="max-h-[calc(100svh-3.5rem)] overflow-y-auto py-4">
               {copy.nav.map((item) => (
                 <NavLink
                   key={item.href}
@@ -59,7 +64,7 @@ export function Header() {
                   end={item.href === "/"}
                   onClick={() => setOpen(false)}
                   className={({ isActive }) =>
-                    `block border-b border-black/10 py-4 text-2xl font-black ${isActive ? "text-neutral-400" : "text-[#1c1b1b]"}`
+                    `block border-b border-black/10 py-4 text-[clamp(1.6rem,7vw,2.25rem)] font-black leading-none ${isActive ? "text-neutral-400" : "text-[#1c1b1b]"}`
                   }
                 >
                   {item.label}
@@ -69,7 +74,7 @@ export function Header() {
                 <Link
                   to="/contacts"
                   onClick={() => setOpen(false)}
-                  className="inline-flex rounded-full bg-[#1c1b1b] px-6 py-3 text-sm font-black text-white"
+                  className="inline-flex min-h-11 items-center rounded-full bg-[#1c1b1b] px-6 text-sm font-black text-white"
                 >
                   {language === "ru" ? "Контакты" : "Contacts"}
                 </Link>
@@ -97,7 +102,7 @@ function LanguageToggle({
           key={item}
           type="button"
           onClick={() => setLanguage(item)}
-          className={`rounded-full px-3 py-2 transition ${language === item ? "bg-[#1c1b1b] text-white" : "text-[#1c1b1b] hover:bg-black/5"}`}
+          className={`min-h-10 min-w-10 rounded-full px-3 transition ${language === item ? "bg-[#1c1b1b] text-white" : "text-[#1c1b1b] hover:bg-black/5"}`}
           aria-pressed={language === item}
         >
           {item.toUpperCase()}
@@ -109,7 +114,7 @@ function LanguageToggle({
 
 function navLinkClass({ isActive }: { isActive: boolean }) {
   return [
-    "relative whitespace-nowrap transition duration-200 hover:text-neutral-500",
+    "relative inline-flex min-h-10 items-center whitespace-nowrap px-2 transition duration-200 hover:text-neutral-500",
     "after:absolute after:-bottom-2 after:left-0 after:h-px after:w-full after:origin-left after:bg-current after:transition-transform after:duration-300",
     isActive ? "after:scale-x-100 text-[#1c1b1b]" : "after:scale-x-0 text-[#1c1b1b]",
   ].join(" ");

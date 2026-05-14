@@ -21,11 +21,11 @@ export function ServicesSection() {
   const inactiveIndexes = copy.services.cards.map((_, index) => index).filter((index) => index !== active);
 
   return (
-    <section className="min-h-[calc(100svh-3.5rem)] border-t border-black/10 bg-white py-6 md:py-8">
+    <section className="min-h-[calc(100svh-3.5rem)] border-t border-black/10 bg-white py-5 md:py-8">
       <div className="page-shell">
         <motion.div
           layout
-          className="grid auto-rows-[230px] gap-4 lg:h-[calc(100svh-7.5rem)] lg:min-h-[700px] lg:grid-cols-3 lg:grid-rows-3 xl:min-h-[760px]"
+          className="grid auto-rows-[220px] gap-3 sm:gap-4 md:auto-rows-[230px] lg:h-[calc(100svh-7.5rem)] lg:min-h-[700px] lg:grid-cols-3 lg:grid-rows-3 xl:min-h-[760px]"
         >
           {copy.services.cards.map((card, index) => {
             const isActive = active === index;
@@ -35,7 +35,7 @@ export function ServicesSection() {
                 layout
                 key={card.title}
                 onClick={() => setActive(index)}
-                className={`group relative cursor-pointer overflow-hidden rounded-[22px] bg-neutral-950 text-white ${
+                className={`group relative min-w-0 cursor-pointer overflow-hidden rounded-[20px] bg-neutral-950 text-white md:rounded-[22px] ${
                   isActive ? "lg:col-span-2 lg:row-span-2 lg:col-start-1 lg:row-start-1" : inactiveSlot
                 } ${isActive ? "min-h-[440px] lg:min-h-0" : ""
                 }`}
@@ -47,13 +47,13 @@ export function ServicesSection() {
                   className="absolute inset-0 h-full w-full object-cover opacity-82 transition duration-700 group-hover:scale-105"
                 />
                 <div className={`absolute inset-0 ${isActive ? "bg-gradient-to-t from-black/60 via-black/10 to-transparent" : "bg-gradient-to-t from-black/78 via-black/20 to-transparent"}`} />
-                <div className={`absolute inset-x-0 p-6 md:p-8 ${isActive ? "bottom-[198px] md:bottom-[156px]" : "bottom-0"}`}>
-                  <div className="flex items-end justify-between gap-5">
-                    <h2 className={`max-w-xl font-black leading-none ${isActive ? "text-[clamp(2.25rem,4.2vw,5.2rem)]" : "text-[clamp(1.45rem,2vw,2.4rem)]"}`}>
+                <div className={`absolute inset-x-0 p-5 md:p-8 ${isActive ? "bottom-[214px] sm:bottom-[198px] md:bottom-[156px]" : "bottom-0"}`}>
+                  <div className="flex min-w-0 items-end justify-between gap-3 md:gap-5">
+                    <h2 className={`min-w-0 max-w-xl font-black leading-none ${isActive ? "text-[clamp(2rem,10vw,5.2rem)] md:text-[clamp(2.25rem,4.2vw,5.2rem)]" : "text-[clamp(1.35rem,7vw,2.4rem)] md:text-[clamp(1.45rem,2vw,2.4rem)]"}`}>
                       {card.title}
                     </h2>
-                    <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-white text-[#1c1b1b] transition group-hover:rotate-45">
-                      <ArrowUpRight size={22} />
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white text-[#1c1b1b] transition group-hover:rotate-45 md:h-12 md:w-12">
+                      <ArrowUpRight size={20} />
                     </span>
                   </div>
                 </div>
@@ -67,11 +67,11 @@ export function ServicesSection() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 24 }}
                         transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
-                        className="absolute inset-x-0 bottom-0 min-h-[198px] bg-white px-6 py-5 text-[#1c1b1b] md:min-h-[156px] md:px-8"
+                        className="absolute inset-x-0 bottom-0 min-h-[214px] bg-white px-5 py-5 text-[#1c1b1b] sm:min-h-[198px] md:min-h-[156px] md:px-8"
                       >
                         <ul className="grid gap-x-8 gap-y-2 md:grid-cols-2">
                           {card.details.map((detail) => (
-                            <li key={detail} className="text-base font-black leading-tight">
+                            <li key={detail} className="text-[0.95rem] font-black leading-tight md:text-base">
                               {detail}
                             </li>
                           ))}
