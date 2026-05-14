@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import modelUrl from "../../assets/3D_models/laptop2.glb?url";
+import modelUrl from "../../assets/3D_models/laptop2.optimized.glb?url";
 
 type ThreeTechnologyModelProps = {
   activeIndex: number;
@@ -10,7 +10,7 @@ type ThreeTechnologyModelProps = {
 };
 
 const poses = [
-  { x: 0.8, y: -0.12, z: 0, rx: -0.0, ry: -1.98, rz: 0.02 },
+  { x: 0.8, y: -0.12, z: 0, rx: -0.0, ry: -1.78, rz: 0.02 },
   { x: -0.8, y: -0.36, z: 0, rx: 0.1, ry: 3.82, rz: -0.02 },
   { x: 0.8, y: -0.32, z: 0, rx: -0.02, ry: -1.7, rz: 0.01 },
   { x: -0.8, y: -0.4, z: 0, rx: 0.04, ry: 4.12, rz: -0.03 },

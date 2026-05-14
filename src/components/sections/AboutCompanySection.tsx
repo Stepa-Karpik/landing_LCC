@@ -17,16 +17,16 @@ export function AboutCompanySection() {
           </h1>
         </div>
 
-        <div className="mt-10 grid gap-8 md:mt-14 xl:grid-cols-[minmax(270px,320px)_minmax(0,1fr)]">
-          <div className="relative min-w-0 overflow-hidden md:overflow-visible xl:min-h-[640px]">
-            <div className="absolute bottom-0 left-[7px] top-0 hidden w-px bg-black/10 md:block">
+        <div className="mt-10 grid gap-8 md:mt-14 md:grid-cols-[210px_minmax(0,1fr)] lg:grid-cols-[260px_minmax(0,1fr)] xl:grid-cols-[minmax(270px,320px)_minmax(0,1fr)]">
+          <div className="relative min-w-0 overflow-visible xl:min-h-[640px]">
+            <div className="absolute bottom-0 left-[7px] top-0 block w-px bg-black/10">
               <motion.div
                 className="w-px bg-[#1c1b1b]"
                 animate={{ height: progressHeight }}
                 transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
               />
             </div>
-            <div className="flex w-full min-w-0 gap-4 overflow-x-auto pb-3 md:grid md:gap-12 md:overflow-visible md:pb-0 md:pl-8 xl:gap-14">
+            <div className="grid w-full min-w-0 gap-7 pl-6 md:gap-10 md:pl-6 lg:gap-12 lg:pl-8 xl:gap-14">
               {copy.aboutCompany.timeline.map((event, index) => {
                 const isActive = active === index;
                 return (
@@ -34,7 +34,7 @@ export function AboutCompanySection() {
                     key={event.year}
                     type="button"
                     onClick={() => setActive(index)}
-                    className="group relative min-w-[9.5rem] shrink-0 text-left md:min-w-0"
+                    className="group relative min-w-0 text-left"
                   >
                     <span className={`block text-[clamp(2.8rem,13vw,6.4rem)] font-black leading-none transition duration-500 md:text-[clamp(3.4rem,5.6vw,6.4rem)] ${isActive ? "text-[#1c1b1b]" : "text-neutral-300"}`}>
                       {event.year}
@@ -50,7 +50,7 @@ export function AboutCompanySection() {
 
           <div className="xl:sticky xl:top-24 xl:self-start">
             <motion.aside className="grid min-h-[unset] overflow-hidden rounded-[24px] bg-white lg:min-h-[620px] lg:grid-cols-[minmax(0,0.62fr)_minmax(0,0.38fr)] xl:min-h-[640px] xl:rounded-[28px]">
-              <div className="relative h-[280px] overflow-hidden sm:h-[340px] lg:h-full lg:min-h-[620px]">
+              <div className="relative h-[280px] overflow-hidden sm:h-[340px] md:h-[360px] lg:h-full lg:min-h-[620px]">
                 <AnimatePresence initial={false}>
                   <motion.img
                     key={activeEvent.image}
@@ -64,7 +64,7 @@ export function AboutCompanySection() {
                   />
                 </AnimatePresence>
               </div>
-              <div className="relative min-h-[330px] overflow-hidden lg:min-h-[620px] lg:border-l lg:border-black/10">
+              <div className="relative min-h-[330px] overflow-hidden md:min-h-[320px] lg:min-h-[620px] lg:border-l lg:border-black/10">
                 <AnimatePresence initial={false}>
                   <motion.div
                     key={activeEvent.year}
