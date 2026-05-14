@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { ThreeContainerModel } from "./ThreeContainerModel";
+import { ThreeTechnologyModel } from "./ThreeTechnologyModel";
 
 export type ScrollModelItem = {
   title: string;
@@ -15,6 +16,7 @@ type ScrollModelSectionProps = {
   items: ScrollModelItem[];
   onItemClick?: (index: number) => void;
   titleAs?: "h1" | "h2";
+  modelType?: "container" | "technology";
 };
 
 export function ScrollModelSection({
@@ -25,10 +27,12 @@ export function ScrollModelSection({
   items,
   onItemClick,
   titleAs = "h2",
+  modelType = "container",
 }: ScrollModelSectionProps) {
   const [active, setActive] = useState(0);
   const refs = useRef<Array<HTMLDivElement | null>>([]);
   const Heading = titleAs;
+  const Model = modelType === "technology" ? ThreeTechnologyModel : ThreeContainerModel;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -54,7 +58,7 @@ export function ScrollModelSection({
   return (
     <section className="relative bg-white">
       <div className="sticky top-14 z-0 h-[calc(100svh-3.5rem)] overflow-visible border-b border-black/10 relative">
-        <ThreeContainerModel
+        <Model
           activeIndex={active}
           total={items.length}
           className="absolute inset-0 h-full w-full"
@@ -84,11 +88,9 @@ export function ScrollModelSection({
           const alignRight = index % 2 === 0;
           const content = (
             <motion.div
-              initial={{ opacity: 0.28, y: 18, scale: 0.985, filter: "blur(6px)" }}
-              whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-              viewport={{ amount: 0.45 }}
-              transition={{ duration: 0.66, ease: [0.16, 1, 0.3, 1] }}
-              className={`relative max-w-[36rem] rounded-[28px] px-0 py-7 transition duration-500 before:pointer-events-none before:absolute before:inset-[-1.25rem] before:-z-10 before:rounded-[32px] before:bg-white/0 before:backdrop-blur-0 before:transition before:duration-500 hover:before:bg-white/14 hover:before:backdrop-blur-[14px] md:py-9 ${
+              whileHover={{ scale: 1.012 }}
+              transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+              className={`relative max-w-[36rem] rounded-[30px] border border-white/0 bg-white/[0.01] px-7 py-7 backdrop-blur-[14px] backdrop-saturate-150 transition duration-300 hover:text-[#111] hover:[text-shadow:0_0_24px_rgba(28,27,27,0.16)] md:p-9 ${
                 isActive ? "text-[#1c1b1b]" : "text-neutral-300"
               }`}
             >
@@ -96,12 +98,6 @@ export function ScrollModelSection({
               <p className={`mt-5 text-lg font-semibold leading-snug transition ${isActive ? "text-neutral-700" : "text-neutral-300"}`}>
                 {item.text}
               </p>
-              {isActive ? (
-                <div aria-hidden="true" className="pointer-events-none absolute inset-0 text-white mix-blend-difference">
-                  <h3 className="text-[clamp(2rem,3vw,4rem)] font-black leading-none">{item.title}</h3>
-                  <p className="mt-5 text-lg font-semibold leading-snug text-white/72">{item.text}</p>
-                </div>
-              ) : null}
             </motion.div>
           );
 
@@ -115,7 +111,7 @@ export function ScrollModelSection({
               className={`flex min-h-[86svh] items-center px-4 py-24 md:px-6 lg:px-8 ${alignRight ? "justify-end" : "justify-start"}`}
             >
               {onItemClick ? (
-                <button type="button" onClick={() => onItemClick(index)} className="text-left">
+                <button type="button" onClick={() => onItemClick(index)} className="cursor-pointer text-left">
                   {content}
                 </button>
               ) : (

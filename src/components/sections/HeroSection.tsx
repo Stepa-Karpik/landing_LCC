@@ -1,5 +1,4 @@
-import { DatabaseZap, MapPin, Phone, ShieldCheck } from "lucide-react";
-import type { ReactNode } from "react";
+import { MapPin, Phone } from "lucide-react";
 import { useState } from "react";
 import { useSiteContent } from "../../context/LanguageContext";
 import { ContactRequestForm } from "../ui/ContactRequestForm";
@@ -66,8 +65,7 @@ export function HeroSection() {
         <ModalKnowledge
           title={copy.about.items[2].title}
           lead={copy.about.items[2].text}
-          icon={<DatabaseZap size={30} />}
-          facts={["EIR", "EDIFACT", "CODECO", "CEDEX"]}
+          facts={["А", "Б", "В", "Г"]}
           rows={[
             "События gate-in и gate-out фиксируются как управляемые статусы.",
             "Обмен данными строится вокруг операторских форматов, а не ручных таблиц.",
@@ -80,8 +78,7 @@ export function HeroSection() {
         <ModalKnowledge
           title={copy.about.items[3].title}
           lead={copy.about.items[3].text}
-          icon={<ShieldCheck size={30} />}
-          facts={["IICL", "РМРС", "ACEP", "CSC"]}
+          facts={["IICL", "РМР", "CEP", "CSC"]}
           rows={[
             "Процедуры ремонта привязаны к требованиям владельцев оборудования.",
             "Контроль качества проходит после восстановления, а не только на входе.",
@@ -96,13 +93,11 @@ export function HeroSection() {
 function ModalKnowledge({
   title,
   lead,
-  icon,
   facts,
   rows,
 }: {
   title: string;
   lead: string;
-  icon: ReactNode;
   facts: string[];
   rows: string[];
 }) {
@@ -110,8 +105,7 @@ function ModalKnowledge({
     <div className="grid gap-8 p-6 md:grid-cols-[0.86fr_1.14fr] md:p-10">
       <div className="flex min-h-[360px] flex-col justify-between">
         <div>
-          <div className="grid h-14 w-14 place-items-center rounded-full bg-[#1c1b1b] text-white">{icon}</div>
-          <h2 className="mt-9 text-[clamp(2.4rem,4vw,5rem)] font-black leading-none">{title}</h2>
+          <h2 className="text-[clamp(2.4rem,4vw,5rem)] font-black leading-none">{title}</h2>
         </div>
         <p className="mt-8 text-lg font-semibold leading-snug text-neutral-700">{lead}</p>
       </div>

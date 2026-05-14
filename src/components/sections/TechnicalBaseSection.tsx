@@ -10,6 +10,7 @@ export function TechnicalBaseSection() {
       modelLabel={copy.technology.modelLabel}
       items={copy.technology.cards}
       titleAs="h1"
+      modelType="technology"
     />
   );
 }

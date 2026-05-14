@@ -22,7 +22,7 @@ describe("site data", () => {
   });
 
   it("uses valid before and after repair pairs without missing source files", () => {
-    expect(repairPairs.length).toBeGreaterThanOrEqual(3);
+    expect(repairPairs).toHaveLength(8);
     for (const pair of repairPairs) {
       expect(decodeURIComponent(pair.before)).toMatch(/До[124]\.jpg$/);
       expect(decodeURIComponent(pair.after)).toMatch(/После[1-4]\.jpg$/);

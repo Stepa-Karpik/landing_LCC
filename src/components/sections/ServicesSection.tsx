@@ -11,6 +11,10 @@ const inactiveSlots = [
   "lg:col-start-3 lg:row-start-3",
 ];
 
+const cornerLength = 25;
+const cornerThickness = 1;
+const cornerRadius = 22;
+
 export function ServicesSection() {
   const copy = useSiteContent();
   const [active, setActive] = useState(0);
@@ -56,21 +60,24 @@ export function ServicesSection() {
 
                 <AnimatePresence initial={false}>
                   {isActive ? (
-                    <motion.div
-                      initial={{ opacity: 0, y: 28 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 24 }}
-                      transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
-                      className="absolute inset-x-0 bottom-0 min-h-[198px] bg-white px-6 py-5 text-[#1c1b1b] md:min-h-[156px] md:px-8"
-                    >
-                      <ul className="grid gap-x-8 gap-y-2 md:grid-cols-2">
-                        {card.details.map((detail) => (
-                          <li key={detail} className="text-base font-black leading-tight">
-                            {detail}
-                          </li>
-                        ))}
-                      </ul>
-                    </motion.div>
+                    <>
+                      <ServiceCorners />
+                      <motion.div
+                        initial={{ opacity: 0, y: 28 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 24 }}
+                        transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
+                        className="absolute inset-x-0 bottom-0 min-h-[198px] bg-white px-6 py-5 text-[#1c1b1b] md:min-h-[156px] md:px-8"
+                      >
+                        <ul className="grid gap-x-8 gap-y-2 md:grid-cols-2">
+                          {card.details.map((detail) => (
+                            <li key={detail} className="text-base font-black leading-tight">
+                              {detail}
+                            </li>
+                          ))}
+                        </ul>
+                      </motion.div>
+                    </>
                   ) : null}
                 </AnimatePresence>
               </motion.article>
@@ -79,5 +86,35 @@ export function ServicesSection() {
         </motion.div>
       </div>
     </section>
+  );
+}
+
+function ServiceCorners() {
+  const long = `${cornerLength}px`;
+  const radius = `${cornerRadius}px`;
+
+  return (
+    <>
+      <span
+        className="pointer-events-none absolute bottom-0 left-0 z-20 border-b border-l border-black"
+        style={{
+          width: long,
+          height: long,
+          borderBottomLeftRadius: radius,
+          borderBottomWidth: cornerThickness,
+          borderLeftWidth: cornerThickness,
+        }}
+      />
+      <span
+        className="pointer-events-none absolute bottom-0 right-0 z-20 border-b border-r border-black"
+        style={{
+          width: long,
+          height: long,
+          borderBottomRightRadius: radius,
+          borderBottomWidth: cornerThickness,
+          borderRightWidth: cornerThickness,
+        }}
+      />
+    </>
   );
 }

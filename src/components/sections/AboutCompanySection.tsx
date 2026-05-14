@@ -6,7 +6,7 @@ export function AboutCompanySection() {
   const copy = useSiteContent();
   const [active, setActive] = useState(0);
   const activeEvent = copy.aboutCompany.timeline[active];
-  const progressWidth = `${(active / Math.max(1, copy.aboutCompany.timeline.length - 1)) * 100}%`;
+  const progressHeight = `${(active / Math.max(1, copy.aboutCompany.timeline.length - 1)) * 100}%`;
 
   return (
     <section className="min-h-[calc(100svh-3.5rem)] border-t border-black/10 bg-white py-12 md:py-16">
@@ -17,9 +17,16 @@ export function AboutCompanySection() {
           </h1>
         </div>
 
-        <div className="mt-16 grid gap-10 xl:grid-cols-[1fr_520px]">
-          <div className="relative">
-            <div className="grid gap-8 md:grid-cols-5">
+        <div className="mt-14 grid gap-10 xl:grid-cols-[340px_minmax(0,1fr)]">
+          <div className="relative xl:min-h-[640px]">
+            <div className="absolute bottom-0 left-[7px] top-0 hidden w-px bg-black/10 md:block">
+              <motion.div
+                className="w-px bg-[#1c1b1b]"
+                animate={{ height: progressHeight }}
+                transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
+              />
+            </div>
+            <div className="grid gap-8 md:gap-14 md:pl-8">
               {copy.aboutCompany.timeline.map((event, index) => {
                 const isActive = active === index;
                 return (
@@ -29,39 +36,29 @@ export function AboutCompanySection() {
                     onClick={() => setActive(index)}
                     className="group relative text-left"
                   >
-                    <span className={`block text-[clamp(2.9rem,4.8vw,5.4rem)] font-black leading-none transition duration-500 ${isActive ? "text-[#1c1b1b]" : "text-neutral-300"}`}>
+                    <span className={`block text-[clamp(3.4rem,5.6vw,6.4rem)] font-black leading-none transition duration-500 ${isActive ? "text-[#1c1b1b]" : "text-neutral-300"}`}>
                       {event.year}
                     </span>
-                    <span className={`mt-8 block text-lg font-black leading-tight transition ${isActive ? "text-[#1c1b1b]" : "text-neutral-400"}`}>
+                    <span className={`mt-4 block text-lg font-black leading-tight transition ${isActive ? "text-[#1c1b1b]" : "text-neutral-400"}`}>
                       {event.title}
-                    </span>
-                    <span className="mt-3 block text-sm font-semibold leading-relaxed text-neutral-500">
-                      {event.shortText}
                     </span>
                   </button>
                 );
               })}
             </div>
-            <div className="mt-10 h-px w-full bg-black/10">
-              <motion.div
-                className="h-px bg-[#1c1b1b]"
-                animate={{ width: progressWidth }}
-                transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
-              />
-            </div>
           </div>
 
           <div className="xl:sticky xl:top-24 xl:self-start">
-            <AnimatePresence mode="wait">
+            <AnimatePresence>
               <motion.aside
                 key={activeEvent.year}
-                initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+                initial={{ opacity: 0.55, y: 8, filter: "blur(5px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -14, filter: "blur(8px)" }}
-                transition={{ duration: 0.62, ease: [0.16, 1, 0.3, 1] }}
-                className="overflow-hidden rounded-[24px] border border-black/10 bg-[#f4f4f4]"
+                exit={{ opacity: 0, y: -6, filter: "blur(4px)" }}
+                transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
+                className="grid min-h-[640px] overflow-hidden rounded-[28px] bg-white lg:grid-cols-[620px_minmax(360px,1fr)]"
               >
-                <div className="aspect-[16/10] overflow-hidden">
+                <div className="h-[380px] overflow-hidden lg:h-[620px] lg:w-[620px]">
                   <motion.img
                     src={activeEvent.image}
                     alt={activeEvent.title}
@@ -71,10 +68,16 @@ export function AboutCompanySection() {
                     transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
                   />
                 </div>
-                <div className="p-7">
-                  <p className="text-[clamp(3rem,6vw,5rem)] font-black leading-none">{activeEvent.metric}</p>
-                  <h2 className="mt-6 text-3xl font-black leading-tight">{activeEvent.title}</h2>
-                  <p className="mt-4 text-base font-semibold leading-relaxed text-neutral-700">{activeEvent.longText}</p>
+                <div className="grid content-between p-7 md:p-9 lg:border-l lg:border-black/10">
+                  <div>
+                    <p className="text-[clamp(3.5rem,8vw,8rem)] font-black leading-none">{activeEvent.metric}</p>
+                    <h2 className="mt-7 border-t border-black/14 pt-7 text-[clamp(2rem,3vw,4rem)] font-black leading-none">
+                      {activeEvent.title}
+                    </h2>
+                  </div>
+                  <p className="mt-10 border-t border-black/14 pt-7 text-lg font-bold leading-snug text-neutral-700">
+                    {activeEvent.longText}
+                  </p>
                 </div>
               </motion.aside>
             </AnimatePresence>

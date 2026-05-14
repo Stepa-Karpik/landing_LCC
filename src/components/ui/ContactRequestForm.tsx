@@ -4,9 +4,10 @@ import { useSiteContent } from "../../context/LanguageContext";
 type ContactRequestFormProps = {
   compact?: boolean;
   labelBg?: "white" | "soft";
+  submitAlign?: "full" | "right";
 };
 
-export function ContactRequestForm({ compact = false, labelBg = "white" }: ContactRequestFormProps) {
+export function ContactRequestForm({ compact = false, labelBg = "white", submitAlign = "full" }: ContactRequestFormProps) {
   const copy = useSiteContent();
 
   const submitRequest = (event: FormEvent<HTMLFormElement>) => {
@@ -40,13 +41,15 @@ export function ContactRequestForm({ compact = false, labelBg = "white" }: Conta
           <textarea
             name="message"
             rows={compact ? 4 : 5}
-            className="w-full resize-none rounded-[26px] border border-black/16 bg-white px-8 py-6 text-lg font-semibold outline-none transition focus:border-black"
+            className="w-full resize-none rounded-[18px] border border-black/16 bg-white px-7 py-6 text-lg font-semibold outline-none transition focus:border-black"
           />
         </label>
       </div>
       <button
         type="submit"
-        className="mt-5 w-full rounded-full bg-[#1c1b1b] px-7 py-4 text-sm font-black text-white transition hover:bg-neutral-700"
+        className={`mt-5 rounded-full bg-[#1c1b1b] px-7 py-4 text-sm font-black text-white transition hover:bg-neutral-700 ${
+          submitAlign === "right" ? "ml-auto flex w-fit min-w-[190px] justify-center" : "w-full"
+        }`}
       >
         {copy.contact.submit}
       </button>
@@ -82,7 +85,7 @@ function Field({
         name={name}
         type={type}
         required={required}
-        className={`w-full rounded-[999px] border border-black/16 bg-white px-8 font-semibold outline-none transition focus:border-black ${
+        className={`w-full rounded-[18px] border border-black/16 bg-white px-7 font-semibold outline-none transition focus:border-black ${
           compact ? "h-[60px] text-base" : "h-[70px] text-lg"
         }`}
       />

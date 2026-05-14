@@ -5,7 +5,7 @@ export function RepairSection() {
   const copy = useSiteContent();
 
   return (
-    <section className="border-t border-black/10 bg-white py-12 md:py-14">
+    <section className="border-t border-black/10 bg-white py-8 md:py-10">
       <div className="page-shell">
         <div>
           <div>
@@ -15,7 +15,7 @@ export function RepairSection() {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-x-6 gap-y-10 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-8 grid gap-x-6 gap-y-8 md:grid-cols-2 xl:grid-cols-4">
           {copy.repair.cases.map((item, index) => (
             <RepairCompareCard
               key={`${item.title}-${item.after}`}
