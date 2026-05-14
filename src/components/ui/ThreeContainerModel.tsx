@@ -10,10 +10,10 @@ type ThreeContainerModelProps = {
 };
 
 const poses = [
-  { x: -0.34, y: 0.22, z: 0, rx: -0.08, ry: -0.78, rz: 0.02 },
-  { x: 0.34, y: 0.26, z: 0, rx: 0.02, ry: 0.62, rz: -0.02 },
-  { x: -0.28, y: 0.32, z: 0, rx: -0.02, ry: -1.35, rz: 0.01 },
-  { x: 0.3, y: 0.24, z: 0, rx: 0.04, ry: 1.1, rz: -0.03 },
+  { x: 0.6, y: -0.12, z: 0, rx: -0.00, ry: -0.78, rz: 0.02 },
+  { x: -0.5, y: -0.36, z: 0, rx: 0.5, ry: 10.12, rz: -0.02 },
+  { x: 0.8, y: -0.32, z: 0, rx: -0.32, ry: -0.9, rz: 0.01 },
+  { x: -0.5, y: -0.4, z: 0, rx: 0.04, ry: 10.12, rz: -0.03 },
 ];
 
 export function ThreeContainerModel({ activeIndex, total, className }: ThreeContainerModelProps) {
