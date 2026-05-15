@@ -4,3 +4,5 @@ test-results
 .env.local
 .DS_Store
 *.zip
+docker
+docs
