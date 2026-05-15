@@ -1,0 +1,9 @@
+Author: Карпов Степан Викторович
+Email: stepanmironov27@gmail.com
+
+Original creation date:
+2026-05-15
+
+This repository and all source files were originally created by the author above.
+
+Cryptographically signed using GPG.
